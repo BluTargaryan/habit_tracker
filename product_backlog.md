@@ -121,3 +121,29 @@ This backlog contains all user stories for the habit tracking app, grouped by fe
 ### Set Notification Times
 **Description:** As a user, I want to have the option to receive notifications three times a day (morning, afternoon, evening) for all selected habits so that I get timely reminders throughout the day to complete my habits.
 **Labels:** `enhancement`, `priority: low`
+
+---
+
+## Habit Detail Screen
+
+### View Habit Details
+**Description:** As a user, I want to open a detail screen for a specific habit so that I can see all information related to that habit in one place.
+**Labels:** `enhancement`, `priority: medium`
+
+### View Habit Streak
+**Description:** As a user, I want to see my current and longest streak for a habit on its detail screen so that I can stay motivated by tracking my consistency.
+**Labels:** `enhancement`, `priority: medium`
+
+### View Habit History
+**Description:** As a user, I want to see a history/calendar of past completions for a habit on its detail screen so that I can review my long-term consistency.
+**Labels:** `enhancement`, `priority: low`
+
+### Edit Habit from Detail Screen
+**Description:** As a user, I want to edit a habit's name and color directly from its detail screen so that I don't have to navigate back to the Habits page to make changes.
+**Labels:** `enhancement`, `priority: low`
+
+### Delete Habit from Detail Screen
+**Description:** As a user, I want to delete a habit directly from its detail screen so that I can remove it without navigating back to the Habits page.
+**Labels:** `enhancement`, `priority: low`
+
+

@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "deny": [
+      "Read(**/.env)",
+      "Read(**/.env.*)",
+      "Read(**/secrets/**)",
+      "Read(**/credentials/**)",
+      "Read(**/*firebase-adminsdk*.json)",
+      "Read(**/*service-account*.json)",
+      "Read(**/serviceAccountKey.json)",
+      "Read(**/*-service-account.json)"
+    ]
+  }
+}

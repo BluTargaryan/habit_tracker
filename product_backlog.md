@@ -148,7 +148,9 @@ This backlog contains all user stories for the habit tracking app, grouped by fe
 
 ---
 
-## Motivation Page
+## Motivation & Weather Page
+
+Both feature areas share a single screen (`/motivation`); stories from each are listed together below, still ordered High → Medium → Low.
 
 ### View Daily Motivational Quote
 **Description:** As a user, I want to see a motivational quote on a dedicated page so that I feel encouraged to keep up with my habits.
@@ -159,10 +161,8 @@ This backlog contains all user stories for the habit tracking app, grouped by fe
 **Labels:** `enhancement`, `priority: low`
 
 ### Display Quote on Homepage
-**Description:** As a user, I want to see a quote of the day preview on my homepage so that I get a moment of motivation without needing to navigate to a separate page.
+**Description:** As a user, I want to see a quote of the day preview paired with today's current weather on my homepage so that I get a moment of motivation and a quick weather check without needing to navigate to a separate page. Tapping the preview opens the full Motivation & Weather page for a quote refresh and the detailed forecast.
 **Labels:** `enhancement`, `priority: low`
-
-## Weather Page
 
 ### View Current Weather
 **Description:** As a user, I want to see the current weather for my location so that I can plan outdoor habits accordingly.

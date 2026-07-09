@@ -146,4 +146,39 @@ This backlog contains all user stories for the habit tracking app, grouped by fe
 **Description:** As a user, I want to delete a habit directly from its detail screen so that I can remove it without navigating back to the Habits page.
 **Labels:** `enhancement`, `priority: low`
 
+---
+
+## Motivation Page
+
+### View Daily Motivational Quote
+**Description:** As a user, I want to see a motivational quote on a dedicated page so that I feel encouraged to keep up with my habits.
+**Labels:** `enhancement`, `priority: low`
+
+### Refresh Quote
+**Description:** As a user, I want to refresh and get a new motivational quote on demand so that I can see a different quote if I want more inspiration.
+**Labels:** `enhancement`, `priority: low`
+
+### Display Quote on Homepage
+**Description:** As a user, I want to see a quote of the day preview on my homepage so that I get a moment of motivation without needing to navigate to a separate page.
+**Labels:** `enhancement`, `priority: low`
+
+## Weather Page
+
+### View Current Weather
+**Description:** As a user, I want to see the current weather for my location so that I can plan outdoor habits accordingly.
+**Labels:** `enhancement`, `priority: low`
+
+### View Weekly Weather Forecast
+**Description:** As a user, I want to see a short forecast for the upcoming days so that I can plan which days are best for outdoor habits.
+**Labels:** `enhancement`, `priority: low`
+
+### Link Weather to Outdoor Habits
+**Description:** As a user, I want to see a weather suggestion on the detail screen of outdoor-related habits so that I know if conditions are suitable before heading out.
+**Labels:** `enhancement`, `priority: low`
+
+
+
+
+
+
 

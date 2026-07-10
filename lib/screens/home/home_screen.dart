@@ -125,22 +125,25 @@ class _HabitStatusList extends StatelessWidget {
             child: SizedBox(
               width: _cardWidth,
               child: Card(
-                child: Padding(
-                  padding: const EdgeInsets.all(12),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      CircleAvatar(backgroundColor: habit.color, radius: 14),
-                      const SizedBox(height: 8),
-                      Text(
-                        habit.name,
-                        textAlign: TextAlign.center,
-                        maxLines: 2,
-                        overflow: TextOverflow.ellipsis,
-                      ),
-                      const SizedBox(height: 4),
-                      const Icon(Icons.unfold_more, size: 14, color: Colors.grey),
-                    ],
+                child: InkWell(
+                  onTap: () => context.push('/habits/${habit.id}'),
+                  child: Padding(
+                    padding: const EdgeInsets.all(12),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        CircleAvatar(backgroundColor: habit.color, radius: 14),
+                        const SizedBox(height: 8),
+                        Text(
+                          habit.name,
+                          textAlign: TextAlign.center,
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                        const SizedBox(height: 4),
+                        const Icon(Icons.unfold_more, size: 14, color: Colors.grey),
+                      ],
+                    ),
                   ),
                 ),
               ),

@@ -142,7 +142,7 @@ class _HabitTile extends StatelessWidget {
       child: ListTile(
         leading: CircleAvatar(backgroundColor: habit.color, radius: 12),
         title: Text(habit.name),
-        onTap: () => context.go('/habits/${habit.id}'),
+        onTap: () => context.push('/habits/${habit.id}'),
         trailing: Checkbox(
           value: completedToday,
           onChanged: (_) => habitProvider.toggleTodayCompletion(habit),

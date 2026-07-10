@@ -22,8 +22,8 @@ This backlog contains all user stories for the habit tracking app, grouped by fe
 
 ## Homepage
 
-### Display Weekly Progress
-**Description:** As a user, I want to see my daily progress for each habit on the homepage so that I can easily monitor my progress.
+### Display To Do Habits
+**Description:** As a user, I want to see which habits I still need to complete today in a section on the homepage, and mark one done with a swipe, so that I can easily monitor and update my daily progress without leaving the homepage.
 **Labels:** `enhancement`, `priority: high`
 
 ### View Welcome Message
@@ -31,7 +31,7 @@ This backlog contains all user stories for the habit tracking app, grouped by fe
 **Labels:** `enhancement`, `priority: medium`
 
 ### View Completed Habits
-**Description:** As a user, I want to see a section for completed habits on the homepage so that I can track what I have already achieved.
+**Description:** As a user, I want to see a section for completed habits on the homepage, and be able to swipe one back to undo it if I marked it done by mistake, so that I can track what I have already achieved.
 **Labels:** `enhancement`, `priority: medium`
 
 ---
@@ -39,7 +39,7 @@ This backlog contains all user stories for the habit tracking app, grouped by fe
 ## Menu
 
 ### Access Menu Options
-**Description:** As a user, I want to access a menu with options for configuring my habits, viewing reports, editing my profile, and signing out so that I can easily navigate to different parts of the app.
+**Description:** As a user, I want to access a menu with options for returning to the homepage, configuring my habits, viewing reports, editing my profile, and signing out so that I can easily navigate to different parts of the app.
 **Labels:** `enhancement`, `priority: high`
 
 ### Sign Out from Menu

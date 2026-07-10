@@ -85,10 +85,10 @@ Full endpoint details, params, and error-handling expectations: see `spec.md` §
 
 Build in strict priority-tier order, from `spec.md` §9 (not §8's screen list, which only describes screen layout — it groups stories by screen, not by priority, and mixing the two causes stories from later tiers to get built early). All High-tier stories come before any Medium; all Medium before any Low. The tier is the unit of work, not the screen — a single screen's stories can span multiple tiers (e.g. Habits List bundles Add Habit [High], Delete Habit [Medium], and color personalization [Low]), so finishing "a screen" isn't the same as finishing a tier, and a screen may need revisiting once its later-tier stories come due.
 
-1. **High:** Registration, Login, Error Feedback on Login, Weekly Progress (homepage), Menu Access, Sign Out, Save Profile Info, Add Habit.
+1. **High:** Registration, Login, Error Feedback on Login, Display To Do Habits (homepage), Menu Access, Sign Out, Save Profile Info, Add Habit.
 2. **Medium:** Welcome Message (homepage), Completed Habits section (homepage), Profile view/edit, Navigate to Profile/Habits (menu), Delete Habit, Habit Detail (view/streak), Weekly/Visualized Reports, Notification enable + habit selection.
 3. **Low:** Update Name in Header, Habit color personalization, View All Habits filter, Notification times, Habit History, Edit/Delete from Detail, Motivation & Weather page (all stories, both sections — see `spec.md` §5.10).
 
-Some stories have hard dependencies that cut against strict tier order (e.g. Weekly Progress needs habit data that only exists once Add Habit — same tier — is built; a screen's route may need a placeholder destination for a not-yet-built later-tier screen it links to). Flag these when they come up rather than silently resolving them.
+Some stories have hard dependencies that cut against strict tier order (e.g. the homepage's To Do/Completed sections need habit data that only exists once Add Habit — same tier — is built; a screen's route may need a placeholder destination for a not-yet-built later-tier screen it links to). Flag these when they come up rather than silently resolving them.
 
 Work through this order one story at a time. On completing a story, stop and ask before starting the next one — don't chain straight into it. Example: after finishing registration (High), ask before starting login (High).

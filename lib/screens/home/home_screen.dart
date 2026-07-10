@@ -48,17 +48,29 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             const SizedBox(height: 24),
             _SectionCard(
-              title: 'Weekly Progress',
+              title: 'To Do',
               child: habitProvider.isLoading
                   ? const Center(child: CircularProgressIndicator())
-                  : _WeeklyProgress(habits: habitProvider.habits),
+                  : _HabitStatusList(
+                      habits: habitProvider.habits
+                          .where((habit) => !habitProvider.isCompletedToday(habit))
+                          .toList(),
+                      habitProvider: habitProvider,
+                      emptyText: habitProvider.habits.isEmpty
+                          ? 'No habits yet — add one to start tracking your progress.'
+                          : "You're all caught up for today!",
+                    ),
             ),
             const SizedBox(height: 16),
             _SectionCard(
-              title: 'Completed Today',
+              title: 'Completed',
               child: habitProvider.isLoading
                   ? const Center(child: CircularProgressIndicator())
-                  : _CompletedToday(habitProvider: habitProvider),
+                  : _HabitStatusList(
+                      habits: habitProvider.habits.where(habitProvider.isCompletedToday).toList(),
+                      habitProvider: habitProvider,
+                      emptyText: 'No habits completed today.',
+                    ),
             ),
             const SizedBox(height: 16),
             _SectionCard(
@@ -76,81 +88,77 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 }
 
-class _WeeklyProgress extends StatelessWidget {
+class _HabitStatusList extends StatelessWidget {
   final List<Habit> habits;
+  final HabitProvider habitProvider;
+  final String emptyText;
 
-  const _WeeklyProgress({required this.habits});
+  const _HabitStatusList({
+    required this.habits,
+    required this.habitProvider,
+    required this.emptyText,
+  });
+
+  static const _cardWidth = 140.0;
+  static const _listHeight = 116.0;
 
   @override
   Widget build(BuildContext context) {
     if (habits.isEmpty) {
-      return const Text('No habits yet — add one to start tracking your progress.');
+      return Text(emptyText);
     }
 
-    final days = List.generate(7, (i) => DateTime.now().subtract(Duration(days: 6 - i)));
-
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: habits.map((habit) {
-        return Padding(
-          padding: const EdgeInsets.only(bottom: 8),
-          child: Row(
-            children: [
-              Expanded(
-                child: Text(habit.name, overflow: TextOverflow.ellipsis),
-              ),
-              ...days.map((day) {
-                final completedThatDay = habit.completions.any(
-                  (completion) => completion.completed && _isSameDay(completion.date, day),
-                );
-                return Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 2),
-                  child: Icon(
-                    completedThatDay ? Icons.check_circle : Icons.circle_outlined,
-                    size: 16,
-                    color: completedThatDay ? habit.color : Colors.grey,
+    return SizedBox(
+      height: _listHeight,
+      child: ListView.separated(
+        scrollDirection: Axis.horizontal,
+        itemCount: habits.length,
+        separatorBuilder: (context, index) => const SizedBox(width: 12),
+        itemBuilder: (context, index) {
+          final habit = habits[index];
+          return Dismissible(
+            key: ValueKey(habit.id),
+            direction: DismissDirection.vertical,
+            onDismissed: (_) => habitProvider.toggleTodayCompletion(habit),
+            background: _swipeIndicator(context),
+            secondaryBackground: _swipeIndicator(context),
+            child: SizedBox(
+              width: _cardWidth,
+              child: Card(
+                child: Padding(
+                  padding: const EdgeInsets.all(12),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      CircleAvatar(backgroundColor: habit.color, radius: 14),
+                      const SizedBox(height: 8),
+                      Text(
+                        habit.name,
+                        textAlign: TextAlign.center,
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                      const SizedBox(height: 4),
+                      const Icon(Icons.unfold_more, size: 14, color: Colors.grey),
+                    ],
                   ),
-                );
-              }),
-            ],
-          ),
-        );
-      }).toList(),
+                ),
+              ),
+            ),
+          );
+        },
+      ),
     );
   }
 
-  bool _isSameDay(DateTime a, DateTime b) {
-    return a.year == b.year && a.month == b.month && a.day == b.day;
-  }
-}
-
-class _CompletedToday extends StatelessWidget {
-  final HabitProvider habitProvider;
-
-  const _CompletedToday({required this.habitProvider});
-
-  @override
-  Widget build(BuildContext context) {
-    final completed = habitProvider.habits.where(habitProvider.isCompletedToday).toList();
-
-    if (completed.isEmpty) {
-      return const Text('No habits completed today.');
-    }
-
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: completed.map((habit) {
-        return Padding(
-          padding: const EdgeInsets.only(bottom: 4),
-          child: Row(
-            children: [
-              Icon(Icons.circle, size: 10, color: habit.color),
-              const SizedBox(width: 8),
-              Text(habit.name),
-            ],
-          ),
-        );
-      }).toList(),
+  Widget _swipeIndicator(BuildContext context) {
+    return Container(
+      alignment: Alignment.center,
+      decoration: BoxDecoration(
+        color: Theme.of(context).colorScheme.primaryContainer,
+        borderRadius: BorderRadius.circular(12),
+      ),
+      child: const Icon(Icons.swap_vert),
     );
   }
 }

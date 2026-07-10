@@ -261,11 +261,19 @@ class _HistoryList extends StatelessWidget {
 
   const _HistoryList({required this.habit});
 
-  static const _historyDays = 30;
+  static const _maxHistoryDays = 30;
 
   @override
   Widget build(BuildContext context) {
-    final days = List.generate(_historyDays, (i) => DateTime.now().subtract(Duration(days: i)));
+    final today = DateTime.now();
+    final createdDay = DateTime(habit.createdAt.year, habit.createdAt.month, habit.createdAt.day);
+    final daysSinceCreated = DateTime(today.year, today.month, today.day)
+            .difference(createdDay)
+            .inDays +
+        1;
+    final historyDays = daysSinceCreated.clamp(1, _maxHistoryDays);
+
+    final days = List.generate(historyDays, (i) => today.subtract(Duration(days: i)));
 
     return Column(
       children: days.map((day) {

@@ -34,7 +34,7 @@ This spec translates the product backlog into concrete screens, data models, nav
 | Notifications Settings | `/notifications` | Yes |
 | Motivation & Weather | `/motivation` | Yes |
 
-Settings Menu has no dedicated route — it's a shared navigation `Drawer` (Profile, Habits, Reports, Notifications, Sign Out) attached to every authenticated screen above, not a routed screen of its own. See §5.4.
+Settings Menu has no dedicated route — it's a shared navigation `Drawer` (Home, Profile, Habits, Reports, Notifications, Sign Out) attached to every authenticated screen above, not a routed screen of its own. See §5.4.
 
 ---
 
@@ -91,14 +91,14 @@ enum NotificationTime { morning, afternoon, evening }
 
 ### 5.3 Homepage (`/home`)
 - Welcome header: `Welcome back, {name}`.
-- Weekly progress summary widget (per-habit daily progress).
-- Completed habits section (today's completed habits).
+- **To Do section:** habits not yet completed today, shown as a fixed-width horizontal `ListView` (scroll left/right to browse). Swipe a card vertically (up or down) to mark that habit complete for today — it moves to the Completed section.
+- **Completed section:** habits already completed today, same fixed-width horizontal `ListView` layout. Swipe a card vertically to undo — it moves back to To Do.
 - Motivation & Weather preview card: compact pairing of today's quote (text + author) and today's current weather (temperature + condition) → tapping navigates to `/motivation` for the detailed view (quote refresh, 5–7 day forecast).
-- **Source stories:** View Welcome Message, Display Weekly Progress, View Completed Habits, Display Quote on Homepage (expanded to include a compact weather pairing per product direction — see §5.10).
+- **Source stories:** View Welcome Message, Display To Do Habits, View Completed Habits, Display Quote on Homepage (expanded to include a compact weather pairing per product direction — see §5.10). Per-habit weekly progress visualization lives on the Reports page (§5.8) instead of the homepage.
 
 ### 5.4 Settings Menu (shared `Drawer`, no dedicated route)
 - Implemented as a shared navigation `Drawer` widget, attached to every authenticated screen's `Scaffold` (Home, Habits, Profile, Reports, Notifications, and future screens as they're built) — not a routed screen. Not attached on Registration/Login.
-- Navigation list: Profile, Habits, Reports, Notifications, Sign Out.
+- Navigation list: Home, Profile, Habits, Reports, Notifications, Sign Out. (Home added so screens reached via the drawer — Habits, Habit Detail, Profile, Reports, Notifications — have a way back to the homepage without relying on the AppBar back arrow.)
 - Sign Out clears session and navigates to `/login`.
 - **Source stories:** Access Menu Options, Navigate to Profile, Navigate to Habits Page, Sign Out from Menu.
 
@@ -200,6 +200,6 @@ The following are explicitly **not** included in this version. Flag any request 
 
 ## 9. Priority Build Order (from backlog)
 
-1. **High:** Registration, Login, Error Feedback on Login, Weekly Progress, Menu Access, Sign Out, Save Profile Info, Add Habit.
+1. **High:** Registration, Login, Error Feedback on Login, Display To Do Habits, Menu Access, Sign Out, Save Profile Info, Add Habit.
 2. **Medium:** Welcome Message, Completed Habits section, Profile view/edit, Navigate to Profile/Habits, Delete Habit, Habit Detail (view/streak), Weekly/Visualized Reports, Notification enable + habit selection.
 3. **Low:** Update Name in Header, Habit color personalization, View All Habits filter, Notification times, Habit History, Edit/Delete from Detail, Motivation & Weather page (all stories, both sections).

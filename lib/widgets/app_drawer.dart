@@ -22,6 +22,11 @@ class AppDrawer extends StatelessWidget {
           padding: EdgeInsets.zero,
           children: [
             ListTile(
+              leading: const Icon(Icons.home_outlined),
+              title: const Text('Home'),
+              onTap: () => _navigate(context, '/home'),
+            ),
+            ListTile(
               leading: const Icon(Icons.person),
               title: const Text('Profile'),
               onTap: () => _navigate(context, '/profile'),

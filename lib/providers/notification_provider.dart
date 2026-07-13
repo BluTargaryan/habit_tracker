@@ -78,6 +78,11 @@ class NotificationProvider extends ChangeNotifier {
     await _reschedule(habits);
   }
 
+  Future<void> sendTestNotification() async {
+    await _notificationService.requestPermission();
+    await _notificationService.showTestNotification();
+  }
+
   Future<void> _reschedule(List<Habit> habits) async {
     await _notificationService.cancelAll();
     if (!settings.enabled) return;

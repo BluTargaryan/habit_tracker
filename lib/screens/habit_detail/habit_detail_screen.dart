@@ -7,7 +7,6 @@ import '../../models/weather.dart';
 import '../../providers/habit_provider.dart';
 import '../../providers/weather_provider.dart';
 import '../../utils/validators.dart';
-import '../../widgets/app_drawer.dart';
 import '../../widgets/confirm_delete_dialog.dart';
 import '../../widgets/habit_color_picker.dart';
 
@@ -122,7 +121,6 @@ class _HabitDetailScreenState extends State<HabitDetailScreen> {
     if (habit == null) {
       return Scaffold(
         appBar: AppBar(title: const Text('Habit')),
-        drawer: const AppDrawer(),
         body: habitProvider.isLoading
             ? const Center(child: CircularProgressIndicator())
             : const Center(child: Text('Habit not found.')),
@@ -146,7 +144,6 @@ class _HabitDetailScreenState extends State<HabitDetailScreen> {
           ),
         ],
       ),
-      drawer: const AppDrawer(),
       body: SafeArea(
         child: ListView(
           padding: const EdgeInsets.all(24),

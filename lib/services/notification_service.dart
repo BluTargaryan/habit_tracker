@@ -47,6 +47,22 @@ class NotificationService {
     await _plugin.cancelAll();
   }
 
+  Future<void> showTestNotification() async {
+    await _plugin.show(
+      id: 0,
+      title: 'Test Notification',
+      body: 'This is what your habit reminders will look like.',
+      notificationDetails: const NotificationDetails(
+        android: AndroidNotificationDetails(
+          'habit_reminders',
+          'Habit Reminders',
+          channelDescription: 'Reminders to complete your habits',
+        ),
+        iOS: DarwinNotificationDetails(),
+      ),
+    );
+  }
+
   Future<void> scheduleForHabit({
     required String habitId,
     required String habitName,

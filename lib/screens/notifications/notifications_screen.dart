@@ -44,6 +44,14 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
                   onChanged: (value) =>
                       notificationProvider.setEnabled(value, habitProvider.habits),
                 ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                  child: OutlinedButton.icon(
+                    onPressed: () => notificationProvider.sendTestNotification(),
+                    icon: const Icon(Icons.notifications_active_outlined),
+                    label: const Text('Send Test Notification'),
+                  ),
+                ),
                 const Divider(),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
